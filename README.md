@@ -13,4 +13,7 @@ Currently working on the issues of locating the names.db file.
 It is a SQLite database that currently must be in the directory
 you run chargen from.
 
+  Addendum: Added a -d <database_name_with_path> flag to chargen.
+    Defaults to data/names.db
+
 
