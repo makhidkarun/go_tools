@@ -48,7 +48,7 @@ func Gender() string {
   }
 }
 
-func GetName(gender string) string {
+func GetName(gender string, db_name string) string {
   // Note that the names.db file must be where the command is run
   // from. 
  
@@ -56,7 +56,7 @@ func GetName(gender string) string {
   var fname   string
   var fresult *sql.Rows
  
-  db, err   := sql.Open("sqlite3", "names.db")
+  db, err   := sql.Open("sqlite3", db_name)
   if err != nil {
     fmt.Println (err)
   }

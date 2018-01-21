@@ -25,6 +25,8 @@ type Person struct {
 func MakePerson(options map[string]string) Person {
   terms, _  := strconv.Atoi(options["terms"])
   gender    := options["gender"]
+  db_name   := options["db_name"]
+
   var character Person 
 
   // Need to figure out pre-adult characters
@@ -42,7 +44,7 @@ func MakePerson(options map[string]string) Person {
     character.Gender = input_gender
   }
 
-  character.Name    = GetName(character.Gender)
+  character.Name    = GetName(character.Gender, db_name)
   character.UPP     = RollUPP()
   character.Age     = Age(character.Terms)
 

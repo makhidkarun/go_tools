@@ -10,6 +10,7 @@ package main
 import (
   "flag"
   "fmt"
+  "os"
   "strconv"
   "strings"
   "github.com/makhidkarun/go_tools"
@@ -20,7 +21,16 @@ func main() {
   var options = make(map[string]string)
   var terms   = flag.Int("t", 0, "Number of terms")
   var gender  = flag.String("g", "", "Gender")
+  var db_name = flag.String("d", "data/names.db", "Database")
+
   flag.Parse()
+
+  // This will need a lot of testing.
+  _, err := os.Stat(*db_name)
+  if err != nil {
+    fmt.Println(err)
+  }
+  options["db_name"]  = *db_name
 
   // Need to figure out pre-adult characters
   if *terms > 0 && *terms <= 10 {
