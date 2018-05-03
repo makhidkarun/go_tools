@@ -17,7 +17,6 @@ import (
 var file = flag.String("f", "-", "File to read.")
 var count = flag.Int("c", 1, "Count of rolls per line.")
 var sep  = flag.String("s", " ", "Field separator.")
-var pre  = flag.Bool("p", false, "Prefix rolls.")
 
 func main() {
   flag.Parse()
