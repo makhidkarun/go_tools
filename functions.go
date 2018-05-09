@@ -4,13 +4,32 @@
 package go_tools
 
 import (
+  "bufio"
   "database/sql"
   "fmt"
-  mbig  "math/big"
-  mrand "math/rand"
+  "os"
+
   crand "crypto/rand"
+  mbig  "math/big"
+
   _ "github.com/mattn/go-sqlite3"
 )
+
+func Age(terms int) int {
+  return 18 + ( terms * 4 ) + RNG(0,3)
+}
+
+func ArrayFromFile(f *os.File) []string {
+  items := make([]string, 0)
+  input := bufio.NewScanner(f)
+  for input.Scan() {
+    s := input.Text()
+    if len(s) > 2 { 
+      items = append(items, s)
+    }   
+  }
+  return items
+}
 
 func RNG(min int, max int) int {
   spread := max - min + 1 
@@ -26,10 +45,6 @@ func OneD6() int {
 
 func TwoD6() int {
   return OneD6() + OneD6()
-}
-
-func Age(terms int) int {
-  return 18 + ( terms * 4 ) + RNG(0,3)
 }
 
 func FormatUPP(upp [6]int) string {
@@ -131,5 +146,5 @@ func StringInArray(val string, array []string) bool {
 } 
 
 func RandomStringFromArray(array []string) string {
-  return array[mrand.Intn(len(array) - 1) ] 
+  return array[RNG(0, len(array) - 1)]
 }
