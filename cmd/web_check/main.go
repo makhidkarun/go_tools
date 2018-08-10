@@ -4,10 +4,11 @@
 // "Introducing Go".
 
 // TODO:
-// 1.  Make it work.
-// 2.  Grab response codes.
+// 1.  Make it work. DONE
+// 2.  Grab response codes. DONE
 // 3.  Check for key words in response.Body.
 // 4.  Take a file of URLs and key words
+// 5.  Set up base round of tests.
 
 package main
 
@@ -56,17 +57,8 @@ func main() {
     }(url)
   }
 
-  //var biggest HomePageSize
-
   for range urls {
     result := <- results
 		fmt.Println("For ", result.URL, "the response was: ", result.Response)
-    //result := <- results
-    //if result.Size > biggest.Size {
-    //  biggest = result
-    //}
   }
-
-  //fmt.Println("The biggest home page: ", biggest.URL)
-  //fmt.Println("The response was: ", biggest.Response)
 }
