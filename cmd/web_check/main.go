@@ -16,12 +16,19 @@ import (
   "fmt"
   "io/ioutil"
   "net/http"
+  "strings"
 )
 
 type HomePageSize struct {
   URL  			string
   Size 			int
   Response  int
+	Body			[]byte
+}
+
+func has_string(body []byte, term string) bool {
+	body_string := string(body[:len(body)])
+	return strings.Contains(body_string, term)
 }
 
 func main() {
@@ -46,13 +53,13 @@ func main() {
       if err != nil {
         panic(err)
       }
-
 			resp := res.StatusCode
       
 			results <- HomePageSize{
         URL:  url,
         Size: len(bs),
         Response: resp,
+				Body:			bs,
       }
     }(url)
   }
@@ -60,5 +67,7 @@ func main() {
   for range urls {
     result := <- results
 		fmt.Println("For ", result.URL, "the response was: ", result.Response)
+		fmt.Println(has_string(result.Body, "doufdofudoifud"))  // Should give false
+		fmt.Println(has_string(result.Body, "google")) 				  // Should usually give true
   }
 }
