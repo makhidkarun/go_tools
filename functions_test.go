@@ -2,28 +2,30 @@ package go_tools
 
 import (
   mrand "math/rand"
+
+  "github.com/makhidkarun/go_tools"
   "testing"
 )
 
-var seed = Seed()
-var rng  = mrand.New(seed)
+
+var rng  = mrand.New(mrand.NewSource(99))
 
 func TestOneD6(t *testing.T){
-  roll := OneD6(rng)
+  roll := go_tools.OneD6()
   if roll < 1 || roll > 6 {
     t.Error(`OneD6 failed`)
   }
 }
 
 func TestTwoD6(t *testing.T){
-  roll := TwoD6(rng)
+  roll := go_tools.TwoD6()
   if roll < 2 || roll > 12 {
     t.Error(`TwoD6 failed`)
   }
 }
 
 func TestAge(t *testing.T){
-  age := Age(2, rng)
+  age := go_tools.Age(2)
   if age < 26 || age > 29 {
     t.Error(`Age failed`)
   }
@@ -31,7 +33,7 @@ func TestAge(t *testing.T){
 
 func TestFormatUPP(t *testing.T){
   upp := [6]int{ 7, 7, 15, 9, 12, 12}
-  newUPP := FormatUPP(upp)
+  newUPP := go_tools.FormatUPP(upp)
   if newUPP != "77F9CC" {
     t.Error(`FormatUPP failed.`)
   }
@@ -41,23 +43,23 @@ func TestStringInArray(t *testing.T){
   var genders []string = []string{"F", "M"}
   option1 := "F"
   option2 := "R"
-  if !StringInArray(option1, genders){
+  if !go_tools.StringInArray(option1, genders){
     t.Error(`Missing an F.`)
   }
-  if StringInArray(option2, genders){
+  if go_tools.StringInArray(option2, genders){
     t.Error(`Never met R.`)
   }
 }
 
 func TestRandomStringFromArray(t *testing.T){
   var genders []string = []string{"F", "M"}
-  gender := RandomStringFromArray(genders)
-  if !StringInArray(gender, genders){
+  gender := go_tools.RandomStringFromArray(genders)
+  if !go_tools.StringInArray(gender, genders){
     t.Error(`Bad gender output.`)
   }
   var ranks []string = []string{"PVT", "SGT", "LT", "CPT", "MAJ"}
-  rank := RandomStringFromArray(ranks)
-  if !StringInArray(rank, ranks){
+  rank := go_tools.RandomStringFromArray(ranks)
+  if !go_tools.StringInArray(rank, ranks){
     t.Error(`Bad rank output.`)
   }
 }
