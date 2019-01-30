@@ -1,0 +1,4 @@
+// testing.txt
+
+go test -v <test_file>_test.go
+
