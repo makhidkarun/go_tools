@@ -1,0 +1,4 @@
+This is a view test page after it was edited. Want to say woo-hoo! And check the error logs. 
+
+And templates. And errors. And template rendering...
+
